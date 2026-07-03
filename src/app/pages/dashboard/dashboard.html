@@ -1,0 +1,36 @@
+<section class="min-h-screen bg-[#050505] text-zinc-100 p-8">
+  <header class="flex justify-between items-center mb-10">
+    <div>
+      <h1 class="text-4xl tracking-[0.25em] text-[#c7b07b]">GRIMOIRE</h1>
+      <p class="text-zinc-400">Bem-vindo, {{ usuario?.usuario_nome }}</p>
+    </div>
+
+    <button
+      (click)="sair()"
+      class="border border-[#c7b07b] text-[#c7b07b] px-5 py-2 rounded-xl hover:bg-[#c7b07b] hover:text-black transition">
+      Sair
+    </button>
+  </header>
+
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+    <a routerLink="/personagens" class="bg-[#0a0a0a] border border-white/10 rounded-2xl p-6 hover:border-[#c7b07b] transition">
+      <h2 class="text-2xl text-[#c7b07b] mb-2">Personagens</h2>
+      <p class="text-zinc-400">Gerencie seus personagens.</p>
+    </a>
+
+    <a routerLink="/ameacas" class="bg-[#0a0a0a] border border-white/10 rounded-2xl p-6 hover:border-[#c7b07b] transition">
+      <h2 class="text-2xl text-[#c7b07b] mb-2">Ameaças</h2>
+      <p class="text-zinc-400">Consulte e cadastre ameaças.</p>
+    </a>
+
+    <a routerLink="/regras" class="bg-[#0a0a0a] border border-white/10 rounded-2xl p-6 hover:border-[#c7b07b] transition">
+      <h2 class="text-2xl text-[#c7b07b] mb-2">Regras</h2>
+      <p class="text-zinc-400">Acesse regras rápidas.</p>
+    </a>
+
+    <a routerLink="/habilidades" class="bg-[#0a0a0a] border border-white/10 rounded-2xl p-6 hover:border-[#c7b07b] transition">
+      <h2 class="text-2xl text-[#c7b07b] mb-2">Habilidades</h2>
+      <p class="text-zinc-400">Gerencie habilidades.</p>
+    </a>
+  </div>
+</section>

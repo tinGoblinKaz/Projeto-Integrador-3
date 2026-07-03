@@ -1,0 +1,71 @@
+<section class="min-h-screen bg-[#050505] text-zinc-100 p-8">
+  <h1 class="text-4xl text-[#c7b07b] tracking-[0.25em] mb-8">
+    Personagens
+  </h1>
+
+  <form [formGroup]="form" (ngSubmit)="salvar()" class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-6 mb-8">
+    <h2 class="text-2xl mb-6">
+      {{ editando ? 'Editar personagem' : 'Novo personagem' }}
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <input formControlName="personagem_nome" placeholder="Nome" class="bg-[#111] border border-white/10 rounded-xl p-4">
+      <input formControlName="personagem_classe" placeholder="Classe" class="bg-[#111] border border-white/10 rounded-xl p-4">
+      <input type="number" formControlName="personagem_nivel" placeholder="Nível" class="bg-[#111] border border-white/10 rounded-xl p-4">
+      <input type="number" formControlName="personagem_pontos_vida" placeholder="Vida" class="bg-[#111] border border-white/10 rounded-xl p-4">
+      <input type="number" formControlName="personagem_pontos_mana" placeholder="Mana" class="bg-[#111] border border-white/10 rounded-xl p-4">
+      <input type="number" formControlName="personagem_pontos_sonho" placeholder="Sonho" class="bg-[#111] border border-white/10 rounded-xl p-4">
+      <input type="number" formControlName="personagem_sanidade" placeholder="Sanidade" class="bg-[#111] border border-white/10 rounded-xl p-4">
+    </div>
+
+    <textarea formControlName="personagem_historia" placeholder="História" rows="4" class="w-full mt-4 bg-[#111] border border-white/10 rounded-xl p-4"></textarea>
+
+    <div class="flex gap-3 mt-6">
+      <button class="bg-[#c7b07b] text-black font-bold rounded-xl px-6 py-3">
+        {{ editando ? 'Salvar alterações' : 'Cadastrar' }}
+      </button>
+
+      @if (editando) {
+        <button type="button" (click)="limpar()" class="border border-white/10 rounded-xl px-6 py-3">
+          Cancelar
+        </button>
+      }
+    </div>
+  </form>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    @for (personagem of personagens; track personagem.personagem_id) {
+      <article class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-6">
+        <h2 class="text-2xl text-[#c7b07b]">
+          {{ personagem.personagem_nome }}
+        </h2>
+
+        <p class="text-zinc-400">{{ personagem.personagem_classe }}</p>
+        <p>Nível: {{ personagem.personagem_nivel }}</p>
+        <p>Vida: {{ personagem.personagem_pontos_vida }}</p>
+        <p>Mana: {{ personagem.personagem_pontos_mana }}</p>
+        <p>Sonho: {{ personagem.personagem_pontos_sonho }}</p>
+        <p>Sanidade: {{ personagem.personagem_sanidade }}</p>
+        <p class="mt-3 text-zinc-300">{{ personagem.personagem_historia }}</p>
+
+        <p class="mt-3 text-sm text-zinc-400">
+          Status: {{ personagem.personagem_status === 1 ? 'Ativo' : 'Inativo' }}
+        </p>
+
+        <div class="flex flex-wrap gap-2 mt-5">
+          <button (click)="editar(personagem)" class="border border-[#c7b07b] text-[#c7b07b] px-4 py-2 rounded-xl">
+            Editar
+          </button>
+
+          <button (click)="alterarStatus(personagem)" class="border border-white/10 px-4 py-2 rounded-xl">
+            {{ personagem.personagem_status === 1 ? 'Inativar' : 'Ativar' }}
+          </button>
+
+          <button (click)="excluir(personagem.personagem_id)" class="border border-red-800 text-red-400 px-4 py-2 rounded-xl">
+            Excluir
+          </button>
+        </div>
+      </article>
+    }
+  </div>
+</section>

@@ -1,0 +1,67 @@
+<div class="min-h-screen bg-[#050505] text-zinc-100 flex items-center justify-center p-8">
+  <div class="w-full max-w-md">
+
+    <div class="text-center mb-8">
+      <h1 class="text-5xl font-light tracking-[0.35em]">
+        GRIMOIRE
+      </h1>
+      <span class="block text-[#c7b07b] tracking-[0.35em] mt-2">
+        OF STARS
+      </span>
+    </div>
+
+    <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8">
+      <h2 class="text-3xl text-center mb-8">
+        Entrar
+      </h2>
+
+      <form (ngSubmit)="entrar()">
+        <div class="flex flex-col mb-5">
+          <label for="email" class="mb-2 text-zinc-400">
+            Email
+          </label>
+          <input
+            id="email"
+            type="email"
+            name="email"
+            placeholder="Digite seu email"
+            [(ngModel)]="email"
+            class="bg-[#111111] border border-white/10 rounded-xl p-4 text-white outline-none focus:border-[#c7b07b]">
+        </div>
+
+        <div class="flex flex-col mb-5">
+          <label for="senha" class="mb-2 text-zinc-400">
+            Senha
+          </label>
+          <input
+            id="senha"
+            type="password"
+            name="senha"
+            placeholder="Digite sua senha"
+            [(ngModel)]="senha"
+            class="bg-[#111111] border border-white/10 rounded-xl p-4 text-white outline-none focus:border-[#c7b07b]">
+        </div>
+
+        @if (mensagemErro) {
+          <p class="text-red-400 text-sm mb-4">
+            {{ mensagemErro }}
+          </p>
+        }
+
+        <button
+          type="submit"
+          class="w-full bg-[#c7b07b] text-[#050505] font-bold rounded-xl p-4 mt-2 cursor-pointer hover:brightness-110 transition">
+          INICIAR A AVENTURA
+        </button>
+      </form>
+
+      <p class="text-center text-zinc-400 mt-6">
+        Não possui uma conta?
+        <a routerLink="/cadastro" class="text-[#c7b07b] hover:underline">
+          Cadastre-se
+        </a>
+      </p>
+    </div>
+
+  </div>
+</div>
