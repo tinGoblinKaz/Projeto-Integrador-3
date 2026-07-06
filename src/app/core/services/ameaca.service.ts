@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { BaseService } from './base.service';
 import { Ameaca } from '../models/ameaca';
-import { environment } from './../../../enviroments/enviroment';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'

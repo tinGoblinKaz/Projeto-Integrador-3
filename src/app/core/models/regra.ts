@@ -1,7 +1,7 @@
 export interface Regra {
-  regra_id: number;
-  regra_status: number;
-  regra_titulo: string;
-  regra_descricao: string;
-  regra_categoria: string;
+  id: number;
+  status: number;
+  titulo: string;
+  descricao: string;
+  categoria: string;
 }

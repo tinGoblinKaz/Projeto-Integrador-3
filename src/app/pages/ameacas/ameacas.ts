@@ -18,12 +18,12 @@ export class Ameacas implements OnInit {
   editando = false;
 
   form = this.fb.group({
-    ameaca_id: [0],
-    ameaca_nome: ['', Validators.required],
-    ameaca_tipo: ['', Validators.required],
-    ameaca_nivel: [1, Validators.required],
-    ameaca_vida: [1, Validators.required],
-    ameaca_descricao: ['']
+    id: [0],
+    nome: ['', Validators.required],
+    tipo: ['', Validators.required],
+    nivel: [1, Validators.required],
+    vida: [1, Validators.required],
+    descricao: ['']
   });
 
   ngOnInit(): void {
@@ -32,7 +32,7 @@ export class Ameacas implements OnInit {
 
   carregar(): void {
     this.service.getAll().subscribe(dados => {
-      this.ameacas = dados.filter(a => a.ameaca_status !== -1);
+      this.ameacas = dados.filter(a => a.status !== -1);
     });
   }
 
@@ -40,16 +40,16 @@ export class Ameacas implements OnInit {
     if (this.form.invalid) return;
 
     const ameaca: Partial<Ameaca> = {
-      ameaca_status: 1,
-      ameaca_nome: this.form.value.ameaca_nome!,
-      ameaca_tipo: this.form.value.ameaca_tipo!,
-      ameaca_nivel: this.form.value.ameaca_nivel!,
-      ameaca_vida: this.form.value.ameaca_vida!,
-      ameaca_descricao: this.form.value.ameaca_descricao || ''
+      status: 1,
+      nome: this.form.value.nome!,
+      tipo: this.form.value.tipo!,
+      nivel: this.form.value.nivel!,
+      vida: this.form.value.vida!,
+      descricao: this.form.value.descricao || ''
     };
 
     if (this.editando) {
-      this.service.update(this.form.value.ameaca_id!, ameaca).subscribe(() => {
+      this.service.update(this.form.value.id!, ameaca).subscribe(() => {
         this.limpar();
         this.carregar();
       });
@@ -71,19 +71,19 @@ export class Ameacas implements OnInit {
   }
 
   alterarStatus(ameaca: Ameaca): void {
-    const status = ameaca.ameaca_status === 1 ? 0 : 1;
-    this.service.changeStatus(ameaca.ameaca_id, status).subscribe(() => this.carregar());
+    const status = ameaca.status === 1 ? 0 : 1;
+    this.service.changeStatus(ameaca.id, status).subscribe(() => this.carregar());
   }
 
   limpar(): void {
     this.editando = false;
     this.form.reset({
-      ameaca_id: 0,
-      ameaca_nome: '',
-      ameaca_tipo: '',
-      ameaca_nivel: 1,
-      ameaca_vida: 1,
-      ameaca_descricao: ''
+      id: 0,
+      nome: '',
+      tipo: '',
+      nivel: 1,
+      vida: 1,
+      descricao: ''
     });
   }
 }

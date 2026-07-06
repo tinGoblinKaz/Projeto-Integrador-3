@@ -18,10 +18,10 @@ export class Regras implements OnInit {
   editando = false;
 
   form = this.fb.group({
-    regra_id: [0],
-    regra_titulo: ['', Validators.required],
-    regra_categoria: ['', Validators.required],
-    regra_descricao: ['', Validators.required]
+    id: [0],
+    titulo: ['', Validators.required],
+    categoria: ['', Validators.required],
+    descricao: ['', Validators.required]
   });
 
   ngOnInit(): void {
@@ -30,7 +30,7 @@ export class Regras implements OnInit {
 
   carregar(): void {
     this.service.getAll().subscribe(dados => {
-      this.regras = dados.filter(r => r.regra_status !== -1);
+      this.regras = dados.filter(r => r.status !== -1);
     });
   }
 
@@ -38,14 +38,14 @@ export class Regras implements OnInit {
     if (this.form.invalid) return;
 
     const regra: Partial<Regra> = {
-      regra_status: 1,
-      regra_titulo: this.form.value.regra_titulo!,
-      regra_categoria: this.form.value.regra_categoria!,
-      regra_descricao: this.form.value.regra_descricao!
+      status: 1,
+      titulo: this.form.value.titulo!,
+      categoria: this.form.value.categoria!,
+      descricao: this.form.value.descricao!
     };
 
     if (this.editando) {
-      this.service.update(this.form.value.regra_id!, regra).subscribe(() => {
+      this.service.update(this.form.value.id!, regra).subscribe(() => {
         this.limpar();
         this.carregar();
       });
@@ -67,17 +67,17 @@ export class Regras implements OnInit {
   }
 
   alterarStatus(regra: Regra): void {
-    const status = regra.regra_status === 1 ? 0 : 1;
-    this.service.changeStatus(regra.regra_id, status).subscribe(() => this.carregar());
+    const status = regra.status === 1 ? 0 : 1;
+    this.service.changeStatus(regra.id, status).subscribe(() => this.carregar());
   }
 
   limpar(): void {
     this.editando = false;
     this.form.reset({
-      regra_id: 0,
-      regra_titulo: '',
-      regra_categoria: '',
-      regra_descricao: ''
+      id: 0,
+      titulo: '',
+      categoria: '',
+      descricao: ''
     });
   }
 }

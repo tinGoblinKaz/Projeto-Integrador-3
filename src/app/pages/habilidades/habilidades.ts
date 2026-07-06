@@ -18,11 +18,11 @@ export class Habilidades implements OnInit {
   editando = false;
 
   form = this.fb.group({
-    habilidade_id: [0],
-    personagem_id: [0, Validators.required],
-    habilidade_nome: ['', Validators.required],
-    habilidade_tipo: ['', Validators.required],
-    habilidade_descricao: ['', Validators.required]
+    id: [0],
+    personagemId: [0, Validators.required],
+    nome: ['', Validators.required],
+    tipo: ['', Validators.required],
+    descricao: ['', Validators.required]
   });
 
   ngOnInit(): void {
@@ -31,7 +31,7 @@ export class Habilidades implements OnInit {
 
   carregar(): void {
     this.service.getAll().subscribe(dados => {
-      this.habilidades = dados.filter(h => h.habilidade_status !== -1);
+      this.habilidades = dados.filter(h => h.status !== -1);
     });
   }
 
@@ -39,15 +39,15 @@ export class Habilidades implements OnInit {
     if (this.form.invalid) return;
 
     const habilidade: Partial<Habilidade> = {
-      habilidade_status: 1,
-      personagem_id: this.form.value.personagem_id!,
-      habilidade_nome: this.form.value.habilidade_nome!,
-      habilidade_tipo: this.form.value.habilidade_tipo!,
-      habilidade_descricao: this.form.value.habilidade_descricao!
+      status: 1,
+      personagemId: this.form.value.personagemId!,
+      nome: this.form.value.nome!,
+      tipo: this.form.value.tipo!,
+      descricao: this.form.value.descricao!
     };
 
     if (this.editando) {
-      this.service.update(this.form.value.habilidade_id!, habilidade).subscribe(() => {
+      this.service.update(this.form.value.id!, habilidade).subscribe(() => {
         this.limpar();
         this.carregar();
       });
@@ -69,18 +69,18 @@ export class Habilidades implements OnInit {
   }
 
   alterarStatus(habilidade: Habilidade): void {
-    const status = habilidade.habilidade_status === 1 ? 0 : 1;
-    this.service.changeStatus(habilidade.habilidade_id, status).subscribe(() => this.carregar());
+    const status = habilidade.status === 1 ? 0 : 1;
+    this.service.changeStatus(habilidade.id, status).subscribe(() => this.carregar());
   }
 
   limpar(): void {
     this.editando = false;
     this.form.reset({
-      habilidade_id: 0,
-      personagem_id: 0,
-      habilidade_nome: '',
-      habilidade_tipo: '',
-      habilidade_descricao: ''
+      id: 0,
+      personagemId: 0,
+      nome: '',
+      tipo: '',
+      descricao: ''
     });
   }
 }

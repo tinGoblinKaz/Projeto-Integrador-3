@@ -18,9 +18,9 @@ export class AuthService {
     return this.usuarioService.getAll().pipe(
       map((usuarios) => {
         const usuarioEncontrado = usuarios.find((usuario) =>
-          usuario.usuario_email === email &&
-          usuario.usuario_senha === senha &&
-          usuario.usuario_status === 1
+          usuario.email === email &&
+          usuario.senha === senha &&
+          usuario.status === 1
         );
 
         if (usuarioEncontrado) {

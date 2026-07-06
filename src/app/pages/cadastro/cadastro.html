@@ -1,67 +1,116 @@
-<div class="min-h-screen bg-[#050505] text-zinc-100 flex items-center justify-center p-8">
-  <div class="w-full max-w-md">
+<div class="cadastro-page">
 
-    <div class="text-center mb-8">
-      <h1 class="text-5xl font-light tracking-[0.35em]">
-        GRIMOIRE
-      </h1>
-      <span class="block text-[#c7b07b] tracking-[0.35em] mt-2">
-        OF STARS
-      </span>
+    <div class="cadastro-card">
+
+        <div class="corner corner-top-left"></div>
+        <div class="corner corner-top-right"></div>
+        <div class="corner corner-bottom-left"></div>
+        <div class="corner corner-bottom-right"></div>
+
+        <div class="logo">
+
+            <img src="assets/img/logo.png" alt="Grimoire of Stars">
+
+            <h1>Grimoire of Stars</h1>
+
+            <p>INGRESSE NO REPOSITÓRIO ARCANO</p>
+
+        </div>
+
+        <form
+            class="cadastro-form"
+            [formGroup]="cadastroForm"
+            (ngSubmit)="cadastrar()">
+
+            <div class="input-group">
+
+                <label for="nome">
+                    Nome do Aventureiro
+                </label>
+
+                <input
+                    id="nome"
+                    type="text"
+                    placeholder="Seu nome"
+                    formControlName="nome">
+
+            </div>
+
+            <div class="input-group">
+
+                <label for="email">
+                    Endereço de Email
+                </label>
+
+                <input
+                    id="email"
+                    type="email"
+                    placeholder="mystic@arcanum.com"
+                    formControlName="email">
+
+            </div>
+
+            <div class="input-group">
+
+                <label for="senha">
+                    Palavra de Passe
+                </label>
+
+                <input
+                    id="senha"
+                    type="password"
+                    placeholder="••••••••••"
+                    formControlName="senha">
+
+            </div>
+
+            <div class="input-group">
+
+                <label for="confirmarSenha">
+                    Confirmar Palavra de Passe
+                </label>
+
+                <input
+                    id="confirmarSenha"
+                    type="password"
+                    placeholder="••••••••••"
+                    formControlName="confirmarSenha">
+
+            </div>
+
+            @if (mensagemErro) {
+
+                <div class="erro">
+
+                    {{ mensagemErro }}
+
+                </div>
+
+            }
+
+            <button type="submit">
+
+                CRIAR<br>
+                GRIMÓRIO
+
+            </button>
+
+        </form>
+
+        <div class="divider"></div>
+
+        <div class="footer">
+
+            <span>Já possui uma conta?</span>
+
+            <a routerLink="/login">
+
+                Entrar
+
+            </a>
+
+        </div>
+
     </div>
 
-    <div class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-8">
-      <h2 class="text-3xl text-center mb-8">
-        Criar Conta
-      </h2>
-
-      <form [formGroup]="cadastroForm" (ngSubmit)="cadastrar()">
-
-        <input
-          formControlName="usuario_nome"
-          placeholder="Nome"
-          class="w-full mb-4 bg-[#111111] border border-white/10 rounded-xl p-4 text-white outline-none focus:border-[#c7b07b]">
-
-        <input
-          formControlName="usuario_email"
-          type="email"
-          placeholder="Email"
-          class="w-full mb-4 bg-[#111111] border border-white/10 rounded-xl p-4 text-white outline-none focus:border-[#c7b07b]">
-
-        <input
-          formControlName="usuario_senha"
-          type="password"
-          placeholder="Senha"
-          class="w-full mb-4 bg-[#111111] border border-white/10 rounded-xl p-4 text-white outline-none focus:border-[#c7b07b]">
-
-        <input
-          formControlName="confirmarSenha"
-          type="password"
-          placeholder="Confirmar senha"
-          class="w-full mb-4 bg-[#111111] border border-white/10 rounded-xl p-4 text-white outline-none focus:border-[#c7b07b]">
-
-        
-
-        @if (mensagemErro) {
-          <p class="text-red-400 text-sm mb-4">
-            {{ mensagemErro }}
-          </p>
-        }
-
-        <button
-          type="submit"
-          class="w-full bg-[#c7b07b] text-[#050505] font-bold rounded-xl p-4 mt-2 hover:brightness-110 transition">
-          CRIAR CONTA
-        </button>
-      </form>
-
-      <p class="text-center text-zinc-400 mt-6">
-        Já possui uma conta?
-        <a routerLink="/login" class="text-[#c7b07b] hover:underline">
-          Entrar
-        </a>
-      </p>
-    </div>
-
-  </div>
 </div>
