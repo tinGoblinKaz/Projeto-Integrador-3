@@ -43,7 +43,7 @@ export class Personagens implements OnInit {
       next: (dados) => {
         this.personagens = dados.filter(p =>
           p.status !== -1 &&
-          p.id === usuario?.id
+          p.usuarioId === usuario?.id
         );
       }
     });

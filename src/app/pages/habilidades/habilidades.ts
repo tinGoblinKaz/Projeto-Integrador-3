@@ -76,7 +76,7 @@ export class Habilidades implements OnInit {
   limpar(): void {
     this.editando = false;
     this.form.reset({
-      id: 0,
+      id: 1,
       personagemId: 0,
       nome: '',
       tipo: '',

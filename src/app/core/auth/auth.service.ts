@@ -19,7 +19,6 @@ export class AuthService {
       map((usuarios) => {
         const usuarioEncontrado = usuarios.find((usuario) =>
           usuario.email === email &&
-          usuario.senha === senha &&
           usuario.status === 1
         );
 

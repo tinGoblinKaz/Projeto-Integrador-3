@@ -57,7 +57,7 @@ export class Cadastro {
       Validators.required
     ],
 
-    usuario_imagem: ['']
+    
 
   });
 
