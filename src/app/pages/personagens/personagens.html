@@ -1,71 +1,182 @@
-<section class="min-h-screen bg-[#050505] text-zinc-100 p-8">
-  <h1 class="text-4xl text-[#c7b07b] tracking-[0.25em] mb-8">
-    Personagens
-  </h1>
+<section class="personagens-page">
 
-  <form [formGroup]="form" (ngSubmit)="salvar()" class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-6 mb-8">
-    <h2 class="text-2xl mb-6">
-      {{ editando ? 'Editar personagem' : 'Novo personagem' }}
-    </h2>
+  <header class="page-header">
+    <h1 class="page-title">
+      PERSONAGENS
+    </h1>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <input formControlName="nome" placeholder="Nome" class="bg-[#111] border border-white/10 rounded-xl p-4">
-      <input formControlName="classe" placeholder="Classe" class="bg-[#111] border border-white/10 rounded-xl p-4">
-      <input type="number" formControlName="nivel" placeholder="Nível" class="bg-[#111] border border-white/10 rounded-xl p-4">
-      <input type="number" formControlName="pontosVida" placeholder="Vida" class="bg-[#111] border border-white/10 rounded-xl p-4">
-      <input type="number" formControlName="pontosMana" placeholder="Mana" class="bg-[#111] border border-white/10 rounded-xl p-4">
-      <input type="number" formControlName="pontosSonho" placeholder="Sonho" class="bg-[#111] border border-white/10 rounded-xl p-4">
-      <input type="number" formControlName="sanidade" placeholder="Sanidade" class="bg-[#111] border border-white/10 rounded-xl p-4">
+    <div class="title-line"></div>
+
+    <p class="page-subtitle">
+      Crie e gerencie os heróis do seu universo.
+    </p>
+
+    <button class="btn-criar" (click)="abrirFormulario()">
+      + Criar Personagem
+    </button>
+  </header>
+
+  @if (mensagemSucesso) {
+    <div class="mensagem sucesso">
+      {{ mensagemSucesso }}
     </div>
+  }
 
-    <textarea formControlName="historia" placeholder="História" rows="4" class="w-full mt-4 bg-[#111] border border-white/10 rounded-xl p-4"></textarea>
-
-    <div class="flex gap-3 mt-6">
-      <button class="bg-[#c7b07b] text-black font-bold rounded-xl px-6 py-3">
-        {{ editando ? 'Salvar alterações' : 'Cadastrar' }}
-      </button>
-
-      @if (editando) {
-        <button type="button" (click)="limpar()" class="border border-white/10 rounded-xl px-6 py-3">
-          Cancelar
-        </button>
-      }
+  @if (mensagemErro) {
+    <div class="mensagem erro">
+      {{ mensagemErro }}
     </div>
-  </form>
+  }
 
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+  @if (mostrarFormulario) {
+    <section class="form-container">
+      <form [formGroup]="form" (ngSubmit)="salvar()" class="personagem-form">
+
+        <h2 class="form-title">
+          {{ editando ? 'Editar Personagem' : 'Novo Personagem' }}
+        </h2>
+
+        <div class="form-grid">
+          <div class="field">
+            <label>Nome</label>
+            <input formControlName="nome" class="form-input">
+          </div>
+
+          <div class="field">
+            <label>Classe</label>
+            <input formControlName="classe" class="form-input">
+          </div>
+
+          <div class="field">
+            <label>Nível</label>
+            <input type="number" formControlName="nivel" class="form-input">
+          </div>
+
+          <div class="field">
+            <label>Vida</label>
+            <input type="number" formControlName="pontosVida" class="form-input">
+          </div>
+
+          <div class="field">
+            <label>Mana</label>
+            <input type="number" formControlName="pontosMana" class="form-input">
+          </div>
+
+          <div class="field">
+            <label>Sonho</label>
+            <input type="number" formControlName="pontosSonho" class="form-input">
+          </div>
+
+          <div class="field">
+            <label>Sanidade</label>
+            <input type="number" formControlName="sanidade" class="form-input">
+          </div>
+        </div>
+
+        <div class="field historia">
+          <label>História</label>
+          <textarea rows="5" formControlName="historia" class="form-textarea"></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-save">
+            {{ editando ? 'Salvar Alterações' : 'Cadastrar' }}
+          </button>
+
+          <button type="button" (click)="fecharFormulario()" class="btn-cancel">
+            Cancelar
+          </button>
+        </div>
+
+      </form>
+    </section>
+  }
+
+  @if (personagens.length === 0) {
+    <p class="empty-message">
+      Nenhum personagem cadastrado.
+    </p>
+  }
+
+  <section class="cards-container">
     @for (personagem of personagens; track personagem.id) {
-      <article class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-6">
-        <h2 class="text-2xl text-[#c7b07b]">
+      <article class="personagem-card">
+
+        <h2>
           {{ personagem.nome }}
         </h2>
 
-        <p class="text-zinc-400">{{ personagem.classe }}</p>
-        <p>Nível: {{ personagem.nivel }}</p>
-        <p>Vida: {{ personagem.pontosVida }}</p>
-        <p>Mana: {{ personagem.pontosMana }}</p>
-        <p>Sonho: {{ personagem.pontosSonho }}</p>
-        <p>Sanidade: {{ personagem.sanidade }}</p>
-        <p class="mt-3 text-zinc-300">{{ personagem.historia }}</p>
+        <span class="classe">
+          {{ personagem.classe }}
+        </span>
 
-        <p class="mt-3 text-sm text-zinc-400">
-          Status: {{ personagem.status === 1 ? 'Ativo' : 'Inativo' }}
+        <div class="atributos">
+          <div>
+            <strong>Nível</strong>
+            <span>{{ personagem.nivel }}</span>
+          </div>
+
+          <div>
+            <strong>Vida</strong>
+            <span>{{ personagem.pontosVida }}</span>
+          </div>
+
+          <div>
+            <strong>Mana</strong>
+            <span>{{ personagem.pontosMana }}</span>
+          </div>
+
+          <div>
+            <strong>Sonho</strong>
+            <span>{{ personagem.pontosSonho }}</span>
+          </div>
+
+          <div>
+            <strong>Sanidade</strong>
+            <span>{{ personagem.sanidade }}</span>
+          </div>
+        </div>
+
+        <p class="historia-card">
+          {{ personagem.historia }}
         </p>
 
-        <div class="flex flex-wrap gap-2 mt-5">
-          <button (click)="editar(personagem)" class="border border-[#c7b07b] text-[#c7b07b] px-4 py-2 rounded-xl">
+        <div class="habilidades-card">
+          <strong>Habilidades</strong>
+
+          @if (habilidadesDoPersonagem(personagem.id).length === 0) {
+            <p>Nenhuma habilidade cadastrada.</p>
+          }
+
+          <div class="habilidades-lista">
+            @for (habilidade of habilidadesDoPersonagem(personagem.id); track habilidade.id) {
+              <span>
+                {{ habilidade.nome }}
+              </span>
+            }
+          </div>
+        </div>
+
+        <div class="status">
+          {{ personagem.status === 1 ? 'Ativo' : 'Inativo' }}
+        </div>
+
+        <div class="card-actions">
+          <button class="btn-edit" (click)="editar(personagem)">
             Editar
           </button>
 
-          <button (click)="alterarStatus(personagem)" class="border border-white/10 px-4 py-2 rounded-xl">
+          <button class="btn-toggle" (click)="alterarStatus(personagem)">
             {{ personagem.status === 1 ? 'Inativar' : 'Ativar' }}
           </button>
 
-          <button (click)="excluir(personagem.id)" class="border border-red-800 text-red-400 px-4 py-2 rounded-xl">
+          <button class="btn-delete" (click)="excluir(personagem.id)">
             Excluir
           </button>
         </div>
+
       </article>
     }
-  </div>
+  </section>
+
 </section>

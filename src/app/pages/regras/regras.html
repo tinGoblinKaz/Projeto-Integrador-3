@@ -1,47 +1,114 @@
-<section class="min-h-screen bg-[#050505] text-zinc-100 p-8">
-  <h1 class="text-4xl text-[#c7b07b] tracking-[0.25em] mb-8">Regras</h1>
+<section class="regras-page">
 
-  <form [formGroup]="form" (ngSubmit)="salvar()" class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-6 mb-8">
-    <h2 class="text-2xl mb-6">{{ editando ? 'Editar regra' : 'Nova regra' }}</h2>
+  <header class="page-header">
+    <h1 class="page-title">
+      REGRAS
+    </h1>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <input formControlName="titulo" placeholder="Título" class="bg-[#111] border border-white/10 rounded-xl p-4">
-      <input formControlName="categoria" placeholder="Categoria" class="bg-[#111] border border-white/10 rounded-xl p-4">
+    <div class="title-line"></div>
+
+    <p class="page-subtitle">
+      Consulte e organize regras rápidas para facilitar suas sessões.
+    </p>
+
+    <button class="btn-criar" (click)="abrirFormulario()">
+      + Criar Regra
+    </button>
+  </header>
+
+  @if (mensagemSucesso) {
+    <div class="mensagem sucesso">
+      {{ mensagemSucesso }}
     </div>
+  }
 
-    <textarea formControlName="descricao" placeholder="Descrição" rows="5" class="w-full mt-4 bg-[#111] border border-white/10 rounded-xl p-4"></textarea>
-
-    <div class="flex gap-3 mt-6">
-      <button class="bg-[#c7b07b] text-black font-bold rounded-xl px-6 py-3">
-        {{ editando ? 'Salvar alterações' : 'Cadastrar' }}
-      </button>
-
-      @if (editando) {
-        <button type="button" (click)="limpar()" class="border border-white/10 rounded-xl px-6 py-3">
-          Cancelar
-        </button>
-      }
+  @if (mensagemErro) {
+    <div class="mensagem erro">
+      {{ mensagemErro }}
     </div>
-  </form>
+  }
 
-  <div class="space-y-4">
+  @if (mostrarFormulario) {
+    <section class="form-container">
+      <form [formGroup]="form" (ngSubmit)="salvar()" class="regra-form">
+
+        <h2 class="form-title">
+          {{ editando ? 'Editar Regra' : 'Nova Regra' }}
+        </h2>
+
+        <div class="form-grid">
+          <div class="field">
+            <label>Título</label>
+            <input formControlName="titulo" class="form-input">
+          </div>
+
+          <div class="field">
+            <label>Categoria</label>
+            <input formControlName="categoria" class="form-input">
+          </div>
+        </div>
+
+        <div class="field descricao">
+          <label>Descrição</label>
+          <textarea rows="6" formControlName="descricao" class="form-textarea"></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-save">
+            {{ editando ? 'Salvar Alterações' : 'Cadastrar' }}
+          </button>
+
+          <button type="button" (click)="fecharFormulario()" class="btn-cancel">
+            Cancelar
+          </button>
+        </div>
+
+      </form>
+    </section>
+  }
+
+  @if (regras.length === 0) {
+    <p class="empty-message">
+      Nenhuma regra cadastrada.
+    </p>
+  }
+
+  <section class="cards-container regras-lista">
     @for (regra of regras; track regra.id) {
-      <article class="bg-[#0a0a0a] border border-white/10 rounded-3xl p-6">
-        <p class="text-sm text-zinc-400">{{ regra.categoria }}</p>
-        <h2 class="text-2xl text-[#c7b07b]">{{ regra.titulo }}</h2>
-        <p class="mt-3 text-zinc-300">{{ regra.descricao }}</p>
-        <p class="mt-3 text-sm text-zinc-400">
-          Status: {{ regra.status === 1 ? 'Ativo' : 'Inativo' }}
+      <article class="regra-card">
+
+        <span class="categoria">
+          {{ regra.categoria }}
+        </span>
+
+        <h2>
+          {{ regra.titulo }}
+        </h2>
+
+        <p class="descricao-card">
+          {{ regra.descricao }}
         </p>
 
-        <div class="flex flex-wrap gap-2 mt-5">
-          <button (click)="editar(regra)" class="border border-[#c7b07b] text-[#c7b07b] px-4 py-2 rounded-xl">Editar</button>
-          <button (click)="alterarStatus(regra)" class="border border-white/10 px-4 py-2 rounded-xl">
+        <div class="status">
+          {{ regra.status === 1 ? 'Ativo' : 'Inativo' }}
+        </div>
+
+        <div class="card-actions">
+          <button class="btn-edit" (click)="editar(regra)">
+            Editar
+          </button>
+
+          <button class="btn-toggle" (click)="alterarStatus(regra)">
             {{ regra.status === 1 ? 'Inativar' : 'Ativar' }}
           </button>
-          <button (click)="excluir(regra.id)" class="border border-red-800 text-red-400 px-4 py-2 rounded-xl">Excluir</button>
+
+          <button class="btn-delete" (click)="excluir(regra.id)">
+            Excluir
+          </button>
         </div>
+
       </article>
     }
-  </div>
+  </section>
+
 </section>

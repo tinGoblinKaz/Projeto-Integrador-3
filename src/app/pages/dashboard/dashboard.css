@@ -1,0 +1,227 @@
+/* ================================================= */
+/* Dashboard */
+/* ================================================= */
+
+.dashboard {
+
+    min-height: 100vh;
+
+    background: #0a0a0a;
+
+    padding: 60px 80px;
+
+}
+
+/* ================================================= */
+/* Header */
+/* ================================================= */
+
+.dashboard-header {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    margin-bottom: 80px;
+
+}
+
+.dashboard-header h1 {
+
+    font-family: 'Cinzel', serif;
+
+    font-size: 4rem;
+
+    font-weight: 400;
+
+    color: #f2ece4;
+
+    letter-spacing: .08em;
+
+    margin: 0;
+
+}
+
+/* Linha dourada elegante */
+
+.divider {
+
+    width: 450px;
+
+    height: 2px;
+
+    margin-top: 18px;
+
+    background: linear-gradient(
+        to right,
+        transparent,
+        #c7b07b,
+        transparent
+    );
+
+}
+
+/* ================================================= */
+/* Grid */
+/* ================================================= */
+
+.dashboard-grid {
+
+    max-width: 1400px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 50px;
+
+}
+
+/* ================================================= */
+/* Cards */
+/* ================================================= */
+
+.module-card {
+
+    height: 380px;
+
+    background: #111111;
+
+    border: 1px solid rgba(199, 176, 123, .15);
+
+    text-decoration: none;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    position: relative;
+
+    transition: all .3s ease;
+
+    overflow: hidden;
+
+}
+
+.module-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 14px;
+
+    left: 14px;
+
+    width: 22px;
+
+    height: 22px;
+
+    border-top: 1px solid rgba(199,176,123,.45);
+
+    border-left: 1px solid rgba(199,176,123,.45);
+
+}
+
+.module-card::after {
+
+    content: "";
+
+    position: absolute;
+
+    bottom: 14px;
+
+    right: 14px;
+
+    width: 22px;
+
+    height: 22px;
+
+    border-bottom: 1px solid rgba(199,176,123,.45);
+
+    border-right: 1px solid rgba(199,176,123,.45);
+
+}
+
+.module-card:hover {
+
+    border-color: #c7b07b;
+
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 0 25px rgba(199,176,123,.08);
+
+}
+
+.module-card h2 {
+
+    font-family: 'Cinzel', serif;
+
+    font-size: 2.6rem;
+
+    font-weight: 400;
+
+    color: #f2ece4;
+
+    text-align: center;
+
+    letter-spacing: .04em;
+
+    margin: 0;
+
+}
+
+/* ================================================= */
+/* Responsivo */
+/* ================================================= */
+
+@media (max-width: 1200px) {
+
+    .dashboard-grid {
+
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .dashboard {
+
+        padding: 40px 25px;
+
+    }
+
+    .dashboard-header h1 {
+
+        font-size: 2.8rem;
+
+    }
+
+    .divider {
+
+        width: 250px;
+
+    }
+
+    .dashboard-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .module-card {
+
+        height: 260px;
+
+    }
+
+}

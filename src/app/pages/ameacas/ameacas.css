@@ -1,0 +1,430 @@
+/* ========================================= */
+/* Página */
+/* ========================================= */
+
+.ameacas-page {
+
+    min-height: 100vh;
+
+    background: #0a0a0a;
+
+    padding: 50px;
+
+}
+
+/* ========================================= */
+/* Cabeçalho */
+/* ========================================= */
+
+.page-header {
+
+    text-align: center;
+
+    margin-bottom: 50px;
+
+}
+
+.page-title {
+
+    font-family: 'Cinzel', serif;
+
+    font-size: 4rem;
+
+    font-weight: 400;
+
+    color: #f2ece4;
+
+    margin: 0;
+
+}
+.page-subtitle {
+  color: #f2ece4;
+  opacity: .85;
+  font-size: 1rem;
+  margin-bottom: 28px;
+}
+
+.title-line {
+
+    width: 350px;
+
+    height: 2px;
+
+    margin: 18px auto 0;
+
+    background: linear-gradient(
+        to right,
+        transparent,
+        #c7b07b,
+        transparent
+    );
+
+}
+
+/* ========================================= */
+/* Botão criar */
+/* ========================================= */
+
+.create-container {
+
+    text-align: center;
+
+    margin-bottom: 40px;
+
+}
+
+.btn-criar {
+
+    background: #c7b07b;
+
+    color: #0a0a0a;
+
+    border: none;
+
+    padding: 14px 30px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: .3s;
+
+}
+
+.btn-criar:hover {
+
+    transform: translateY(-3px);
+
+}
+
+/* ========================================= */
+/* Formulário */
+/* ========================================= */
+
+.form-container {
+
+    max-width: 1200px;
+
+    margin: 0 auto 60px;
+
+    padding: 40px;
+
+    border: 1px solid rgba(199,176,123,.15);
+
+    background: #111111;
+
+}
+
+.form-title {
+
+    text-align: center;
+
+    color: #f2ece4;
+
+    font-family: 'Cinzel', serif;
+
+    margin-bottom: 30px;
+
+}
+
+.form-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 25px;
+
+}
+
+.field {
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+.field label {
+
+    color: #c7b07b;
+
+    margin-bottom: 8px;
+
+}
+
+.field input,
+.field textarea {
+
+    background: #0a0a0a;
+
+    border: 1px solid rgba(199,176,123,.15);
+
+    color: #f2ece4;
+
+    padding: 14px;
+
+}
+
+.field input:focus,
+.field textarea:focus {
+
+    outline: none;
+
+    border-color: #c7b07b;
+
+}
+
+.textarea-field {
+
+    margin-top: 25px;
+
+}
+
+.form-actions {
+
+    margin-top: 30px;
+
+    display: flex;
+
+    gap: 12px;
+
+}
+
+.btn-save,
+.btn-cancel {
+
+    padding: 12px 24px;
+
+    cursor: pointer;
+
+}
+
+.btn-save {
+
+    background: #c7b07b;
+
+    color: #000;
+
+    border: none;
+
+}
+
+.btn-cancel {
+
+    background: transparent;
+
+    color: #f2ece4;
+
+    border: 1px solid rgba(199,176,123,.25);
+
+}
+
+/* ========================================= */
+/* Grid de ameaças */
+/* ========================================= */
+
+.cards-container {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    gap: 40px;
+
+}
+
+/* ========================================= */
+/* Card */
+/* ========================================= */
+
+.ameaca-card {
+
+    width: 340px;
+
+    min-height: 430px;
+
+    background: #111111;
+
+    border: 1px solid rgba(199,176,123,.15);
+
+    padding: 25px;
+
+    position: relative;
+
+}
+
+.ameaca-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 14px;
+
+    left: 14px;
+
+    width: 22px;
+
+    height: 22px;
+
+    border-top: 1px solid rgba(199,176,123,.45);
+
+    border-left: 1px solid rgba(199,176,123,.45);
+
+}
+
+.ameaca-card::after {
+
+    content: "";
+
+    position: absolute;
+
+    bottom: 14px;
+
+    right: 14px;
+
+    width: 22px;
+
+    height: 22px;
+
+    border-bottom: 1px solid rgba(199,176,123,.45);
+
+    border-right: 1px solid rgba(199,176,123,.45);
+
+}
+
+.ameaca-card h2 {
+
+    text-align: center;
+
+    font-family: 'Cinzel', serif;
+
+    color: #f2ece4;
+
+    font-size: 2rem;
+
+    margin-bottom: 8px;
+
+}
+
+.tipo {
+
+    text-align: center;
+
+    color: #c7b07b;
+
+    margin-bottom: 25px;
+
+}
+
+.atributos {
+
+    margin-bottom: 25px;
+
+}
+
+.atributos div {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 10px 0;
+
+    border-bottom: 1px solid rgba(255,255,255,.05);
+
+}
+
+.atributos strong {
+
+    color: #f2ece4;
+
+}
+
+.descricao {
+
+    color: #d4d4d4;
+
+    line-height: 1.6;
+
+    margin-bottom: 20px;
+
+}
+
+.status {
+
+    text-align: center;
+
+    color: #c7b07b;
+
+    margin-bottom: 20px;
+
+}
+
+.card-actions {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+
+}
+
+.btn-edit,
+.btn-toggle,
+.btn-delete {
+
+    background: transparent;
+
+    color: #f2ece4;
+
+    border: 1px solid rgba(199,176,123,.25);
+
+    padding: 8px 14px;
+
+    cursor: pointer;
+
+}
+
+.btn-delete {
+
+    border-color: rgba(255,80,80,.4);
+
+}
+.mensagem {
+  max-width: 900px;
+  margin: 0 auto 30px auto;
+  padding: 16px 22px;
+  border: 1px solid;
+  text-align: center;
+}
+
+.mensagem.sucesso {
+  color: #9be7a1;
+  border-color: rgba(155, 231, 161, .35);
+  background: rgba(40, 120, 60, .15);
+}
+
+.mensagem.erro {
+  color: #ff8a8a;
+  border-color: rgba(255, 90, 90, .35);
+  background: rgba(120, 40, 40, .15);
+}
+
+.empty-message {
+  text-align: center;
+  color: #bdbdbd;
+  margin-bottom: 40px;
+}
+
+.descricao-card {
+  color: #f5f1eb;
+  line-height: 1.5;
+  margin: 18px 0 20px 0;
+}
